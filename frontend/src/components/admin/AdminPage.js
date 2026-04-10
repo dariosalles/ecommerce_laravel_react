@@ -7,6 +7,7 @@ import AdminOrders from './AdminOrders';
 import AdminProducts from './AdminProducts';
 import AdminUsers from './AdminUsers';
 import AdminCategories from './AdminCategories';
+import AdminSettings from './AdminSettings';
 import './AdminLayout.css';
 
 function AdminPage() {
@@ -80,6 +81,8 @@ function AdminPage() {
         return <AdminUsers />;
       case 'categories':
         return <AdminCategories />;
+      case 'settings':
+        return <AdminSettings />;
       default:
         return <AdminDashboard />;
     }
@@ -165,6 +168,17 @@ function AdminPage() {
           </button>
 
           <div className="admin-nav-section">
+            <div className="admin-nav-section-title">Configurações</div>
+          </div>
+
+          <button
+            className={`admin-nav-item ${activeTab === 'settings' ? 'active' : ''}`}
+            onClick={() => setActiveTab('settings')}
+          >
+            ⚙️ Configurações da Loja
+          </button>
+
+          <div className="admin-nav-section">
             <div className="admin-nav-section-title">Conta</div>
           </div>
 
@@ -183,6 +197,7 @@ function AdminPage() {
             {activeTab === 'products' && '🛍️ Gerenciar Produtos'}
             {activeTab === 'users' && '👥 Gerenciar Usuários'}
             {activeTab === 'categories' && '🏷️ Gerenciar Categorias'}
+            {activeTab === 'settings' && '⚙️ Configurações da Loja'}
           </h1>
           <div className="admin-user-info">
             <span>👤 {admin.name}</span>

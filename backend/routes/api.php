@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PaymentMethodController;
 use App\Http\Controllers\Api\ShippingMethodController;
 use App\Http\Controllers\Api\StoreInfoController;
+use App\Http\Controllers\Api\StoreSettingController;
 use App\Http\Controllers\Api\FeaturedHighlightController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\AdminAuthController;
@@ -105,3 +106,12 @@ Route::get('/shipping-methods/{id}', [ShippingMethodController::class, 'show']);
 // Featured highlights routes (public)
 Route::get('/featured-highlights', [FeaturedHighlightController::class, 'index']);
 Route::get('/featured-highlights/{id}', [FeaturedHighlightController::class, 'show']);
+
+// Store settings routes (admin only)
+Route::middleware(\App\Http\Middleware\AuthenticateAdmin::class)->prefix('admin')->group(function () {
+    Route::get('/settings', [StoreSettingController::class, 'index']);
+    Route::post('/settings', [StoreSettingController::class, 'store']);
+    Route::put('/settings/{id}', [StoreSettingController::class, 'update']);
+    Route::put('/settings', [StoreSettingController::class, 'update']); // Update unique record
+    Route::delete('/settings/{id}', [StoreSettingController::class, 'destroy']);
+});
