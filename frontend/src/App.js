@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import api from './services/api';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { CartProvider } from './contexts/CartContext';
@@ -52,6 +52,67 @@ function Home() {
   );
 }
 
+function AppLayout() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <>
+      {!isAdminRoute && <Header />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:id" element={<CategoryProducts />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/returns" element={<Returns />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/my-account"
+          element={
+            <PrivateRoute>
+              <MyAccount />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-wishlist"
+          element={
+            <PrivateRoute>
+              <MyWishlist />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateAdminRoute>
+              <AdminPage />
+            </PrivateAdminRoute>
+          }
+        />
+        <Route path="/admin/login" element={<AdminLogin />} />
+      </Routes>
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+}
+
 function App() {
   return (
     <LanguageProvider>
@@ -61,60 +122,10 @@ function App() {
             <NotificationProvider>
               <Toast />
               <Router>
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/products/:id" element={<ProductDetail />} />
-                <Route path="/categories" element={<Categories />} />
-                <Route path="/categories/:id" element={<CategoryProducts />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/shipping" element={<Shipping />} />
-                <Route path="/returns" element={<Returns />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route
-                  path="/my-account"
-                  element={
-                    <PrivateRoute>
-                      <MyAccount />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/my-wishlist"
-                  element={
-                    <PrivateRoute>
-                      <MyWishlist />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/checkout"
-                  element={
-                    <PrivateRoute>
-                      <Checkout />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/admin"
-                  element={
-                    <PrivateAdminRoute>
-                      <AdminPage />
-                    </PrivateAdminRoute>
-                  }
-                />
-                <Route path="/admin/login" element={<AdminLogin />} />
-              </Routes>
-              <Footer />
-            </Router>
-          </NotificationProvider>
-        </AuthProvider>
+                <AppLayout />
+              </Router>
+            </NotificationProvider>
+          </AuthProvider>
         </WishlistProvider>
       </CartProvider>
     </LanguageProvider>
