@@ -375,4 +375,4 @@ MIT License - Veja [LICENSE](./LICENSE) para detalhes
 
 **Última atualização**: 9 de Abril de 2026
 
-Feito com ❤️ por [Seu Nome]
+Feito com ❤️ por Dario Salles
