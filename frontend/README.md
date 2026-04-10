@@ -128,6 +128,14 @@ Frontend construído com **React 18**, **Context API** e **React Router v6** par
   - Modal para nova categoria
 - ✅ **Estilo Responsivo**: Totalmente responsivo para mobile/tablet/desktop
 
+### 🔓 Admin Authentication (v0.9)
+- ✅ **AdminLogin**: Página de login dedicada para admins
+- ✅ Autenticação separada de usuários clientes
+- ✅ Token-based authentication com localStorage
+- ✅ Verificação de permissão ao acessar /admin
+- ✅ Logout com limpeza de token
+- ✅ Interface profissional com gradiente
+
 ---
 
 ## 🚀 Features Faltando

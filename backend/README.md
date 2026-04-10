@@ -11,7 +11,7 @@ O **E-Com Shop** é uma plataforma de e-commerce robusta e escalável com arquit
 - **Database**: MySQL 8.0 com seeds de exemplo
 - **Containerização**: Docker Compose para dev/prod
 
-**Status do Projeto**: Em desenvolvimento ✅ **80% completo**
+**Status do Projeto**: Em desenvolvimento ✅ **82% completo**
 
 ---
 
@@ -103,13 +103,23 @@ O **E-Com Shop** é uma plataforma de e-commerce robusta e escalável com arquit
 - ✅ Helper para conversão de URLs (backend → frontend)
 - ✅ Estrutura de diretórios organizada
 
+### 👥 Sistema de Admin Separado (v0.9)
+- ✅ Tabela `admins` dedicada (separada de `users`)
+- ✅ Roles: super_admin, admin, moderator
+- ✅ Método de autenticação separado: `/api/admin/login`
+- ✅ Controle de acesso por role
+- ✅ AdminAuthController para login/logout/perfil
+- ✅ AdminManagementController para gerenciar outros admins
+- ✅ Last login tracking para auditoria
+- ✅ Ativação/desativação de contas de admin
+- ✅ Seeder com credenciais padrão
+
 ---
 
 ## 🚀 Features Faltando
 
 ### 🛍️ Funcionalidades Core
 - ⏳ **Checkout completo**: Integração com gateway de pagamento (Stripe/MercadoPago)
-
 - ⏳ **Carrinho Persistente**: Salvar carrinho no backend (usuário logado)
 - ⏳ **Favoritos**: Wishlist com persistência
 
