@@ -29,6 +29,7 @@ import Privacy from './components/Privacy';
 import AdminPage from './components/admin/AdminPage';
 import AdminLogin from './components/admin/AdminLogin';
 import PrivateRoute from './components/PrivateRoute';
+import PrivateAdminRoute from './components/PrivateAdminRoute';
 import Toast from './components/Toast';
 import './App.css';
 
@@ -103,9 +104,9 @@ function App() {
                 <Route
                   path="/admin"
                   element={
-                    <PrivateRoute>
+                    <PrivateAdminRoute>
                       <AdminPage />
-                    </PrivateRoute>
+                    </PrivateAdminRoute>
                   }
                 />
                 <Route path="/admin/login" element={<AdminLogin />} />

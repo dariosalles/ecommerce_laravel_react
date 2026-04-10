@@ -15,7 +15,8 @@ function AdminUsers() {
     setError('');
     try {
       const response = await api.get('/users');
-      setUsers(response.data.data || []);
+      // Lidar com ambos: paginação (response.data.data) ou array direto (response.data)
+      setUsers(Array.isArray(response.data) ? response.data : (response.data.data || []));
     } catch (err) {
       console.error('Erro ao carregar usuários:', err);
       setError('Erro ao carregar usuários');

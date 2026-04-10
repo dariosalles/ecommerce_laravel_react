@@ -6,6 +6,7 @@ function AdminProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -25,7 +26,8 @@ function AdminProducts() {
     setLoading(true);
     try {
       const response = await api.get('/products');
-      setProducts(response.data.data || []);
+      // Lidar com ambos: paginação (response.data.data) ou array direto (response.data)
+      setProducts(Array.isArray(response.data) ? response.data : (response.data.data || []));
     } catch (err) {
       console.error('Erro ao carregar produtos:', err);
       setError('Erro ao carregar produtos');
@@ -37,7 +39,8 @@ function AdminProducts() {
   const loadCategories = async () => {
     try {
       const response = await api.get('/categories');
-      setCategories(response.data.data || []);
+      // Lidar com ambos: paginação (response.data.data) ou array direto (response.data)
+      setCategories(Array.isArray(response.data) ? response.data : (response.data.data || []));
     } catch (err) {
       console.error('Erro ao carregar categorias:', err);
     }
@@ -51,10 +54,30 @@ function AdminProducts() {
     }));
   };
 
-  const handleAddProduct = async () => {
+  const handleEditProduct = (product) => {
+    setEditingId(product.id);
+    setFormData({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      stock: product.stock,
+      category_id: product.category_id,
+      featured: product.featured,
+    });
+    setShowModal(true);
+  };
+
+  const handleSaveProduct = async () => {
     try {
-      await api.post('/products', formData);
+      if (editingId) {
+        // Atualizar produto existente
+        await api.put(`/products/${editingId}`, formData);
+      } else {
+        // Criar novo produto
+        await api.post('/products', formData);
+      }
       setShowModal(false);
+      setEditingId(null);
       setFormData({
         name: '',
         description: '',
@@ -65,8 +88,8 @@ function AdminProducts() {
       });
       loadProducts();
     } catch (err) {
-      console.error('Erro ao adicionar produto:', err);
-      setError('Erro ao adicionar produto');
+      console.error('Erro ao salvar produto:', err);
+      setError('Erro ao salvar produto');
     }
   };
 
@@ -151,6 +174,13 @@ function AdminProducts() {
                   <td>{product.featured ? '⭐' : '-'}</td>
                   <td>
                     <button 
+                      className="btn-small btn-edit"
+                      onClick={() => handleEditProduct(product)}
+                      style={{ marginRight: '6px', background: '#667eea', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer' }}
+                    >
+                      Editar
+                    </button>
+                    <button 
                       className="btn-small btn-delete"
                       onClick={() => handleDelete(product.id)}
                     >
@@ -173,8 +203,19 @@ function AdminProducts() {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Novo Produto</h2>
-              <button className="modal-close" onClick={() => setShowModal(false)}>
+              <h2>{editingId ? 'Editar Produto' : 'Novo Produto'}</h2>
+              <button className="modal-close" onClick={() => {
+                setShowModal(false);
+                setEditingId(null);
+                setFormData({
+                  name: '',
+                  description: '',
+                  price: '',
+                  stock: '',
+                  category_id: '',
+                  featured: 0,
+                });
+              }}>
                 ✕
               </button>
             </div>
@@ -256,15 +297,26 @@ function AdminProducts() {
               <button
                 className="btn-small"
                 style={{ background: '#999', color: 'white' }}
-                onClick={() => setShowModal(false)}
+                onClick={() => {
+                  setShowModal(false);
+                  setEditingId(null);
+                  setFormData({
+                    name: '',
+                    description: '',
+                    price: '',
+                    stock: '',
+                    category_id: '',
+                    featured: 0,
+                  });
+                }}
               >
                 Cancelar
               </button>
               <button
                 className="btn-small btn-primary-admin"
-                onClick={handleAddProduct}
+                onClick={handleSaveProduct}
               >
-                Adicionar
+                {editingId ? 'Atualizar' : 'Adicionar'}
               </button>
             </div>
           </div>

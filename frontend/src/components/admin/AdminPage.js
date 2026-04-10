@@ -116,28 +116,6 @@ function AdminPage() {
     );
   }
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'dashboard':
-        return <AdminDashboard />;
-      case 'orders':
-        return <AdminOrders />;
-      case 'products':
-        return <AdminProducts />;
-      case 'users':
-        return <AdminUsers />;
-      case 'categories':
-        return <AdminCategories />;
-      default:
-        return <AdminDashboard />;
-    }
-  };
-
-  const handleLogout = async () => {
-    await logout();
-    window.location.href = '/';
-  };
-
   return (
     <div className="admin-container">
       {/* Sidebar */}
@@ -207,15 +185,13 @@ function AdminPage() {
             {activeTab === 'categories' && '🏷️ Gerenciar Categorias'}
           </h1>
           <div className="admin-user-info">
-            <span>👤 {user.name}</span>
+            <span>👤 {admin.name}</span>
             <span style={{ color: '#999' }}>•</span>
-            <span style={{ color: '#667eea' }}>Admin</span>
+            <span style={{ color: '#667eea' }}>{admin.role}</span>
           </div>
-        </div>admin.name}</span>
-            <span style={{ color: '#999' }}>•</span>
-            <span style={{ color: '#667eea' }}>{admin.role}
-          {renderContent()}
         </div>
+
+        {renderContent()}
       </div>
     </div>
   );

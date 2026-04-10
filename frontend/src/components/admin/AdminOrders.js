@@ -18,7 +18,8 @@ function AdminOrders() {
     setError('');
     try {
       const response = await api.get('/orders/all'); // Endpoint admin para todos os pedidos
-      setOrders(response.data.data || []);
+      // Lidar com ambos: paginação (response.data.data) ou array direto (response.data)
+      setOrders(Array.isArray(response.data) ? response.data : (response.data.data || []));
     } catch (err) {
       console.error('Erro ao carregar pedidos:', err);
       setError('Erro ao carregar pedidos');

@@ -6,6 +6,7 @@ function AdminCategories() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -21,7 +22,8 @@ function AdminCategories() {
     setError('');
     try {
       const response = await api.get('/categories/all');
-      setCategories(response.data.data || []);
+      // Lidar com ambos: paginação (response.data.data) ou array direto (response.data)
+      setCategories(Array.isArray(response.data) ? response.data : (response.data.data || []));
     } catch (err) {
       console.error('Erro ao carregar categorias:', err);
       setError('Erro ao carregar categorias');
@@ -38,20 +40,37 @@ function AdminCategories() {
     }));
   };
 
-  const handleAddCategory = async () => {
+  const handleEditCategory = (category) => {
+    setEditingId(category.id);
+    setFormData({
+      name: category.name,
+      description: category.description,
+      featured: category.featured,
+    });
+    setShowModal(true);
+  };
+
+  const handleSaveCategory = async () => {
     if (!formData.name.trim()) {
       setError('Nome da categoria é obrigatório');
       return;
     }
 
     try {
-      await api.post('/categories', formData);
+      if (editingId) {
+        // Atualizar categoria existente
+        await api.put(`/categories/${editingId}`, formData);
+      } else {
+        // Criar nova categoria
+        await api.post('/categories', formData);
+      }
       setShowModal(false);
+      setEditingId(null);
       setFormData({ name: '', description: '', featured: 0 });
       loadCategories();
     } catch (err) {
-      console.error('Erro ao adicionar categoria:', err);
-      setError('Erro ao adicionar categoria');
+      console.error('Erro ao salvar categoria:', err);
+      setError('Erro ao salvar categoria');
     }
   };
 
@@ -120,6 +139,13 @@ function AdminCategories() {
                   <td>{category.products?.length || 0}</td>
                   <td>
                     <button 
+                      className="btn-small btn-edit"
+                      onClick={() => handleEditCategory(category)}
+                      style={{ marginRight: '6px', background: '#667eea', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer' }}
+                    >
+                      Editar
+                    </button>
+                    <button 
                       className="btn-small btn-delete"
                       onClick={() => handleDelete(category.id)}
                     >
@@ -142,8 +168,12 @@ function AdminCategories() {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Nova Categoria</h2>
-              <button className="modal-close" onClick={() => setShowModal(false)}>
+              <h2>{editingId ? 'Editar Categoria' : 'Nova Categoria'}</h2>
+              <button className="modal-close" onClick={() => {
+                setShowModal(false);
+                setEditingId(null);
+                setFormData({ name: '', description: '', featured: 0 });
+              }}>
                 ✕
               </button>
             </div>
@@ -188,15 +218,19 @@ function AdminCategories() {
               <button
                 className="btn-small"
                 style={{ background: '#999', color: 'white' }}
-                onClick={() => setShowModal(false)}
+                onClick={() => {
+                  setShowModal(false);
+                  setEditingId(null);
+                  setFormData({ name: '', description: '', featured: 0 });
+                }}
               >
                 Cancelar
               </button>
               <button
                 className="btn-small btn-primary-admin"
-                onClick={handleAddCategory}
+                onClick={handleSaveCategory}
               >
-                Adicionar
+                {editingId ? 'Atualizar' : 'Adicionar'}
               </button>
             </div>
           </div>
