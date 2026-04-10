@@ -11,7 +11,7 @@ O **E-Com Shop** é uma plataforma de e-commerce robusta e escalável com arquit
 - **Database**: MySQL 8.0 com seeds de exemplo
 - **Containerização**: Docker Compose para dev/prod
 
-**Status do Projeto**: Em desenvolvimento ✅ **82% completo**
+**Status do Projeto**: Em desenvolvimento ✅ **82% completo** (v0.9)
 
 ---
 
@@ -333,7 +333,36 @@ PUT    /api/orders/:id/status  # Atualizar status (admin)
 
 ---
 
-## 🔄 Workflow de Desenvolvimento
+## � Credenciais de Teste
+
+### Admin
+```
+📧 Email: admin@ecommerce.local
+🔑 Senha: password123
+👥 Role: super_admin
+🔗 POST /api/admin/login
+```
+
+### Moderador
+```
+📧 Email: moderator@ecommerce.local
+🔑 Senha: password123
+👥 Role: moderator
+🔗 POST /api/admin/login
+```
+
+### Cliente Normal (Seed)
+```
+📧 Email: user@example.com
+🔑 Senha: password123
+🔗 POST /api/login
+```
+
+**Nota**: As credenciais são geradas pelo `AdminSeeder` e `UserFactory` durante `php artisan migrate:fresh --seed`
+
+---
+
+## �🔄 Workflow de Desenvolvimento
 
 ### 1. Criar um novo feature
 ```bash

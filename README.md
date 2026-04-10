@@ -2,7 +2,7 @@
 
 Um e-commerce de qualidade profissional construído com **Laravel 11** + **React 18**, containerizado com **Docker** para facilitar desenvolvimento e deployment.
 
-🚀 **Status**: Em desenvolvimento - **80% completo**
+🚀 **Status**: Em desenvolvimento - **85% completo**
 
 ---
 
@@ -52,7 +52,8 @@ npm start
 ### Backend (Laravel)
 - ✅ API REST completa
 - ✅ Autenticação com JWT (Sanctum)
-- ✅ Modelos: Produtos, Categorias, Marcas, Cores, Destaques
+- ✅ **Admin Authentication System** (v0.9) - Tabela separada de admins com sistema de roles
+- ✅ Modelos: Produtos, Categorias, Marcas, Cores, Destaques, Admins
 - ✅ Sistema de Pedidos (Orders & OrderItems)
 - ✅ Seeds com dados de exemplo
 - ✅ Gerenciamento de imagens
@@ -64,8 +65,11 @@ npm start
 - ✅ Grid de produtos com filtros
 - ✅ Página de detalhe do produto
 - ✅ Carrinho de compras funcional
-- ✅ Sistema de autenticação
+- ✅ Sistema de autenticação (usuários)
+- ✅ **Admin Panel Dashboard** (v0.9) - CRUD completo de produtos, categorias, pedidos e usuários
+- ✅ **Admin Login** - Autenticação separada com JWT
 - ✅ Minha conta e meus favoritos
+- ✅ Histórico de pedidos
 - ✅ 5 páginas de suporte (FAQ, Envio, Devoluções, Termos, Privacidade)
 - ✅ Suporte multilíngue (PT-BR/EN/ES)
 - ✅ Design totalmente responsivo
@@ -76,16 +80,18 @@ npm start
 
 ### Core Features
 - ⏳ Checkout com pagamento (Stripe/MercadoPago)
-- ⏳ Histórico de pedidos no frontend
+- ⏳ Página de detalhe do pedido
+- ⏳ Cancelamento de pedidos
 - ⏳ Sistema de avaliações
 - ⏳ Cupons e vouchers
 - ⏳ Carrinho persistente no backend
 
 ### Admin
-- ⏳ Dashboard administrativo
-- ⏳ Gerenciamento de pedidos
-- ⏳ Relatórios e estatísticas
+- ⏳ Relatórios e estatísticas avançadas
 - ⏳ Upload em massa de produtos
+- ⏳ Auditoria de ações de admin
+- ⏳ 2FA para admins
+- ⏳ Gerenciamento de admins no painel
 
 ### Extras
 - ⏳ Busca full-text avançada
@@ -100,10 +106,15 @@ npm start
 
 ```
 ecommerce/
-├── backend/                    # Laravel API (⏳ 70% pronto)
+├── backend/                    # Laravel API (⏳ 82% pronto)
 │   ├── app/
-│   │   ├── Http/Controllers/
-│   │   └── Models/
+│   │   ├── Http/
+│   │   │   ├── Controllers/
+│   │   │   │   ├── Api/        # REST Controllers (Auth, Products, Orders, etc)
+│   │   │   │   └── AdminAuthController
+│   │   │   └── Middleware/
+│   │   │       └── AuthenticateAdmin.php
+│   │   └── Models/             # Eloquent models (User, Product, Order, Admin, etc)
 │   ├── database/
 │   │   ├── migrations/
 │   │   ├── factories/
@@ -111,11 +122,21 @@ ecommerce/
 │   ├── routes/api.php
 │   └── public/images/          # Imagens de produtos
 │
-├── frontend/                   # React App (⏳ 65% pronto)
+├── frontend/                   # React App (⏳ 85% pronto)
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── admin/          # 🆕 Admin Dashboard & Components
+│   │   │   │   ├── AdminPage.js
+│   │   │   │   ├── AdminLogin.js
+│   │   │   │   ├── AdminDashboard.js
+│   │   │   │   ├── AdminOrders.js
+│   │   │   │   ├── AdminProducts.js
+│   │   │   │   ├── AdminCategories.js
+│   │   │   │   ├── AdminUsers.js
+│   │   │   │   └── AdminLayout.css
+│   │   │   └── ...             # User-facing components
 │   │   ├── contexts/
-│   │   ├── services/
+│   │   ├── services/api.js     # 🆕 API client with auth interceptor
 │   │   └── locales/
 │   └── package.json
 │

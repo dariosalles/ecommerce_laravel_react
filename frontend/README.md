@@ -103,8 +103,12 @@ Frontend construído com **React 18**, **Context API** e **React Router v6** par
 - ✅ Hamburger menu mobile
 - ✅ Imagens responsivas
 
-### 🛡️ Painel Admin (v0.8)
+### 🛡️ Painel Admin (v0.9)
 - ✅ **AdminPage**: Layout com sidebar navegável
+- ✅ **AdminLogin**: Página de login dedicada para admins
+  - Separada da autenticação de clientes
+  - Credenciais padrão: admin@ecommerce.local / password123
+  - UI profissional com gradiente roxo/azul
 - ✅ **Dashboard**: Estatísticas da loja
   - Total de pedidos, receita, usuários, produtos
   - Listagem de pedidos recentes com status
@@ -114,31 +118,74 @@ Frontend construído com **React 18**, **Context API** e **React Router v6** par
   - Visualizar detalhes: cliente, itens, totais, endereço
   - Alterar status (Pendente → Processando → Enviado → Entregue)
   - Tracking code display
-- ✅ **Gerenciamento de Produtos**
-  - CRUD completo (criar, ler, editar, deletar)
-  - Modal para novo produto
-  - Preview de características (preço, estoque, categoria)
+- ✅ **Gerenciamento de Produtos** (v0.9)
+  - ✅ CRUD completo (criar, ler, **editar**, deletar)
+  - ✅ Modal para novo/editar produto
+  - ✅ Edição inline com formulário dinâmico
+  - ✅ Preview de características (preço, estoque, categoria)
+  - ✅ Validação de campos obrigatórios
+- ✅ **Gerenciamento de Categorias** (v0.9)
+  - ✅ CRUD completo (criar, ler, **editar**, deletar)
+  - ✅ Edição inline com modal
+  - ✅ Marcar como destaque
+  - ✅ Validação de nome obrigatório
 - ✅ **Gerenciamento de Usuários**
   - Listagem de todos os usuários
   - Visualizar informações (nome, email, telefone, role)
   - Deletar usuários
-- ✅ **Gerenciamento de Categorias**
-  - CRUD completo
-  - Marcar como destaque
-  - Modal para nova categoria
+- ✅ **Autenticação Admin** (v0.9)
+  - ✅ Token JWT separado do usuário (admin_token)
+  - ✅ Verificação de permissão ao acessar /admin
+  - ✅ AuthenticateAdmin middleware no backend
+  - ✅ Logout com limpeza de token
+  - ✅ API interceptor para incluir token nas requisições
 - ✅ **Estilo Responsivo**: Totalmente responsivo para mobile/tablet/desktop
-
-### 🔓 Admin Authentication (v0.9)
-- ✅ **AdminLogin**: Página de login dedicada para admins
-- ✅ Autenticação separada de usuários clientes
-- ✅ Token-based authentication com localStorage
-- ✅ Verificação de permissão ao acessar /admin
-- ✅ Logout com limpeza de token
-- ✅ Interface profissional com gradiente
 
 ---
 
-## 🚀 Features Faltando
+## 🎯 Admin Features por Versão
+
+### v0.8
+- Dashboard básico
+- CRUD de produtos (create)
+- CRUD de categorias (create)
+- CRUD de usuários (delete)
+- CRUD de pedidos (view, status update)
+
+### v0.9 (Atual)
+- ✅ Edit de produtos
+- ✅ Edit de categorias
+- ✅ Admin authentication system separado
+- ✅ API interceptor para tokens
+- ✅ PrivateAdminRoute protection
+- ✅ AuthenticateAdmin middleware
+
+---
+
+## � Credenciais de Teste
+
+### Admin Panel
+```
+📧 Email: admin@ecommerce.local
+🔑 Senha: password123
+🔗 URL: http://localhost:3000/admin/login
+```
+
+**Roles disponíveis:**
+- `super_admin` - Acesso completo (admin@ecommerce.local)
+- `admin` - Acesso limitado
+- `moderator` - Acesso restrito
+
+### Cliente/Usuário Normal
+```
+📧 Email: customer@example.com
+🔑 Senha: password123
+🔗 URL: http://localhost:3000/login
+```
+
+---
+
+## �🚀 Features Faltando
 
 ### 🛒 E-commerce
 - ⏳ Página detalhe de pedido (modal/nova rota)
