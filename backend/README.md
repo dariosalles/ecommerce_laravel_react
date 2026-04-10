@@ -11,7 +11,7 @@ O **E-Com Shop** é uma plataforma de e-commerce robusta e escalável com arquit
 - **Database**: MySQL 8.0 com seeds de exemplo
 - **Containerização**: Docker Compose para dev/prod
 
-**Status do Projeto**: Em desenvolvimento ✅ **78% completo**
+**Status do Projeto**: Em desenvolvimento ✅ **80% completo**
 
 ---
 
@@ -119,14 +119,7 @@ O **E-Com Shop** é uma plataforma de e-commerce robusta e escalável com arquit
 - ⏳ Sistema de vouchers/cupons de desconto
 - ⏳ Cálculo automático de taxa de frete
 
-### 📊 Admin Dashboard
-- ⏳ Painel administrativo (React)
-- ⏳ Gráficos de vendas e estatísticas
-- ⏳ Gerenciamento de pedidos
-- ⏳ Upload de imagens em massa
-- ⏳ Relatórios de estoque
-
-### 📦 Estoque & Pedidos
+###  Estoque & Pedidos
 - ⏳ Controle de estoque por produto
 - ⏳ Notificação de produtos esgotados
 - ⏳ Sistema de backorder

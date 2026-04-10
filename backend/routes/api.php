@@ -25,10 +25,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Orders routes (protected)
     Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders/all', [OrderController::class, 'allOrders']); // Admin only
     Route::get('/orders/{id}', [OrderController::class, 'show']);
     Route::post('/orders', [OrderController::class, 'store']);
     Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel']);
     Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
+
+    // Users routes (admin only)
+    Route::get('/users', function() {
+        return response()->json(\App\Models\User::paginate(50));
+    });
+    Route::delete('/users/{id}', function($id) {
+        \App\Models\User::findOrFail($id)->delete();
+        return response()->json(['message' => 'User deleted']);
+    });
 });
 
 Route::get('/products', [ProductController::class, 'index']);
@@ -36,6 +46,7 @@ Route::get('/products/search', [ProductController::class, 'search']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::get('/categories/featured', [CategoryController::class, 'featured']);
+Route::get('/categories/all', [CategoryController::class, 'index']); // Alias para admin
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::post('/categories', [CategoryController::class, 'store']);

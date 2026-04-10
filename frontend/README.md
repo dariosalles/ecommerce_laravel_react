@@ -103,6 +103,31 @@ Frontend construído com **React 18**, **Context API** e **React Router v6** par
 - ✅ Hamburger menu mobile
 - ✅ Imagens responsivas
 
+### 🛡️ Painel Admin (v0.8)
+- ✅ **AdminPage**: Layout com sidebar navegável
+- ✅ **Dashboard**: Estatísticas da loja
+  - Total de pedidos, receita, usuários, produtos
+  - Listagem de pedidos recentes com status
+  - KPIs e informações do sistema
+- ✅ **Gerenciamento de Pedidos**
+  - Lista completa de todos os pedidos
+  - Visualizar detalhes: cliente, itens, totais, endereço
+  - Alterar status (Pendente → Processando → Enviado → Entregue)
+  - Tracking code display
+- ✅ **Gerenciamento de Produtos**
+  - CRUD completo (criar, ler, editar, deletar)
+  - Modal para novo produto
+  - Preview de características (preço, estoque, categoria)
+- ✅ **Gerenciamento de Usuários**
+  - Listagem de todos os usuários
+  - Visualizar informações (nome, email, telefone, role)
+  - Deletar usuários
+- ✅ **Gerenciamento de Categorias**
+  - CRUD completo
+  - Marcar como destaque
+  - Modal para nova categoria
+- ✅ **Estilo Responsivo**: Totalmente responsivo para mobile/tablet/desktop
+
 ---
 
 ## 🚀 Features Faltando

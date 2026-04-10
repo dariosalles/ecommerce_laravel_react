@@ -26,6 +26,7 @@ import Shipping from './components/Shipping';
 import Returns from './components/Returns';
 import Terms from './components/Terms';
 import Privacy from './components/Privacy';
+import AdminPage from './components/admin/AdminPage';
 import PrivateRoute from './components/PrivateRoute';
 import Toast from './components/Toast';
 import './App.css';
@@ -95,6 +96,14 @@ function App() {
                   element={
                     <PrivateRoute>
                       <Checkout />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin"
+                  element={
+                    <PrivateRoute>
+                      <AdminPage />
                     </PrivateRoute>
                   }
                 />

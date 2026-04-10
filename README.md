@@ -2,7 +2,7 @@
 
 Um e-commerce de qualidade profissional construído com **Laravel 11** + **React 18**, containerizado com **Docker** para facilitar desenvolvimento e deployment.
 
-🚀 **Status**: Em desenvolvimento - **70% completo**
+🚀 **Status**: Em desenvolvimento - **75% completo**
 
 ---
 
