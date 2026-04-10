@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
+import api from '../../services/api';
 import AdminDashboard from './AdminDashboard';
 import AdminOrders from './AdminOrders';
 import AdminProducts from './AdminProducts';
@@ -9,18 +10,108 @@ import AdminCategories from './AdminCategories';
 import './AdminLayout.css';
 
 function AdminPage() {
-  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [admin, setAdmin] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  // Verificar se é admin
-  const isAdmin = user?.role === 'admin' || user?.is_admin === 1;
+  useEffect(() => {
+    loadAdminData();
+  }, []);
 
-  if (!user || !isAdmin) {
+  const loadAdminData = async () => {
+    try {
+      const token = localStorage.getItem('admin_token');
+      
+      if (!token) {
+        navigate('/admin/login');
+        return;
+      }
+
+      // Verificar se token é válido
+      const response = await api.get('/admin/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setAdmin(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.error('Erro ao carregar dados do admin:', err);
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_data');
+      navigate('/admin/login');
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('admin_token');
+      await api.post(
+        '/admin/logout',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.error('Erro no logout:', err);
+    } finally {
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_data');
+      navigate('/admin/login');
+    }
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'dashboard':
+        return <AdminDashboard />;
+      case 'orders':
+        return <AdminOrders />;
+      case 'products':
+        return <AdminProducts />;
+      case 'users':
+        return <AdminUsers />;
+      case 'categories':
+        return <AdminCategories />;
+      default:
+        return <AdminDashboard />;
+    }
+  };
+
+  if (loading) {
+    return (
+      <div style={{ padding: '40px', textAlign: 'center' }}>
+        <div className="spinner"></div>
+        <p>Carregando painel administrativo...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div style={{ padding: '40px', textAlign: 'center' }}>
+        <h2>❌ Erro</h2>
+        <p>{error}</p>
+        <button onClick={() => navigate('/admin/login')}>
+          Voltar para login
+        </button>
+      </div>
+    );
+  }
+
+  if (!admin) {
     return (
       <div style={{ padding: '40px', textAlign: 'center' }}>
         <h2>❌ Acesso Negado</h2>
         <p>Você não tem permissão para acessar o painel administrativo.</p>
+        <button onClick={() => navigate('/')}>Voltar para loja</button>
       </div>
     );
   }
@@ -99,11 +190,7 @@ function AdminPage() {
             <div className="admin-nav-section-title">Conta</div>
           </div>
 
-          <button
-            className="admin-nav-item"
-            onClick={handleLogout}
-            style={{ background: 'rgba(255, 255, 255, 0.1)' }}
-          >
+          <button className="menu-btn logout-btn" onClick={handleLogout}>
             🚪 Sair
           </button>
         </nav>
@@ -124,9 +211,9 @@ function AdminPage() {
             <span style={{ color: '#999' }}>•</span>
             <span style={{ color: '#667eea' }}>Admin</span>
           </div>
-        </div>
-
-        <div className="admin-content">
+        </div>admin.name}</span>
+            <span style={{ color: '#999' }}>•</span>
+            <span style={{ color: '#667eea' }}>{admin.role}
           {renderContent()}
         </div>
       </div>

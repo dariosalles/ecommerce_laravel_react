@@ -27,6 +27,7 @@ import Returns from './components/Returns';
 import Terms from './components/Terms';
 import Privacy from './components/Privacy';
 import AdminPage from './components/admin/AdminPage';
+import AdminLogin from './components/admin/AdminLogin';
 import PrivateRoute from './components/PrivateRoute';
 import Toast from './components/Toast';
 import './App.css';
@@ -107,6 +108,7 @@ function App() {
                     </PrivateRoute>
                   }
                 />
+                <Route path="/admin/login" element={<AdminLogin />} />
               </Routes>
               <Footer />
             </Router>

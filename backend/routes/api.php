@@ -11,12 +11,17 @@ use App\Http\Controllers\Api\ShippingMethodController;
 use App\Http\Controllers\Api\StoreInfoController;
 use App\Http\Controllers\Api\FeaturedHighlightController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\Api\AdminManagementController;
 
 // Authentication routes (public)
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-// Protected authentication routes
+// Admin authentication routes (public)
+Route::post('/admin/login', [AdminAuthController::class, 'login']);
+
+// Protected authentication routes for users
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::put('/user/profile', [AuthController::class, 'updateProfile']);
@@ -39,6 +44,22 @@ Route::middleware('auth:sanctum')->group(function () {
         \App\Models\User::findOrFail($id)->delete();
         return response()->json(['message' => 'User deleted']);
     });
+});
+
+// Protected admin authentication routes
+Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+    Route::get('/me', [AdminAuthController::class, 'admin']);
+    Route::put('/profile', [AdminAuthController::class, 'updateProfile']);
+    Route::post('/change-password', [AdminAuthController::class, 'changePassword']);
+    Route::post('/logout', [AdminAuthController::class, 'logout']);
+
+    // Admin management (super_admin only)
+    Route::get('/list', [AdminManagementController::class, 'index']);
+    Route::post('/create', [AdminManagementController::class, 'store']);
+    Route::put('/{id}', [AdminManagementController::class, 'update']);
+    Route::delete('/{id}', [AdminManagementController::class, 'destroy']);
+    Route::post('/{id}/deactivate', [AdminManagementController::class, 'deactivate']);
+    Route::post('/{id}/activate', [AdminManagementController::class, 'activate']);
 });
 
 Route::get('/products', [ProductController::class, 'index']);
