@@ -334,8 +334,11 @@ MIT License - Veja [LICENSE](./LICENSE) para detalhes
 
 ## 📞 Contato & Suporte
 
-- 📧 Email: suporte@ecomshop.com.br
-- 💬 WhatsApp: [Link](https://wa.me/5511999999999)
+**DSX Web - Desenvolvimento de Software**
+
+- 📧 Email: [dariosalles0@gmail.com](mailto:dariosalles0@gmail.com)
+- 💬 WhatsApp: [(12) 988262312](https://wa.me/5512988262312)
+- 🌐 Site: [www.dsxweb.com.br](https://www.dsxweb.com.br)
 - 🐛 Issues: Abra uma issue no repositório
 
 ---

@@ -449,7 +449,17 @@ docker-compose exec app php artisan config:clear
 
 ---
 
-## 📄 Licença
+## � Contato & Suporte
+
+**DSX Web - Desenvolvimento de Software**
+
+- 📧 Email: [dariosalles0@gmail.com](mailto:dariosalles0@gmail.com)
+- 💬 WhatsApp: [(12) 988262312](https://wa.me/5512988262312)
+- 🌐 Site: [www.dsxweb.com.br](https://www.dsxweb.com.br)
+
+---
+
+## �📄 Licença
 
 Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
 

@@ -465,7 +465,17 @@ PORT=3001 npm start
 
 ---
 
-## 📄 Licença
+## � Contato & Suporte
+
+**DSX Web - Desenvolvimento de Software**
+
+- 📧 Email: [dariosalles0@gmail.com](mailto:dariosalles0@gmail.com)
+- 💬 WhatsApp: [(12) 988262312](https://wa.me/5512988262312)
+- 🌐 Site: [www.dsxweb.com.br](https://www.dsxweb.com.br)
+
+---
+
+## �📄 Licença
 
 MIT
 
