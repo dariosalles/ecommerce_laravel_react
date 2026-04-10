@@ -1,0 +1,455 @@
+{
+  "pt-br": {
+    "header": {
+      "welcome": "Bem-vindo ao Ecommerce",
+      "home": "HOME",
+      "myAccount": "Minha Conta",
+      "myWishlist": "Minha Lista de Desejos",
+      "checkout": "Carrinho",
+      "login": "Entrar",
+      "logout": "Sair",
+      "searchPlaceholder": "Pesquisar produtos..."
+    },
+    "navigation": {
+      "home": "HOME",
+      "about": "SOBRE NÓS",
+      "men": "HOMENS",
+      "women": "MULHERES",
+      "electronics": "ELETRÔNICOS",
+      "contact": "CONTATO"
+    },
+    "hero": {
+      "title": "MODA PARA HOMENS",
+      "description": "Este grupo de alguma forma formaria uma família que é a maneira que todos se tornaram o Brady Bunch. Ame o emocionante e novo. Venha a bordo, estamos esperando por você. No show mais emocionante e no prêmio mais doce da vida deixe fluir, ele flutua de volta para você!",
+      "shopNow": "COMPRAR AGORA"
+    },
+    "products": {
+      "hotDeals": "PROMOÇÕES IMPERDÍVEIS",
+      "inStock": "EM ESTOQUE",
+      "outOfStock": "FORA DE ESTOQUE",
+      "addToCart": "Adicionar ao Carrinho"
+    },
+    "categories": {
+      "title": "CATEGORIAS",
+      "noCategoriesFound": "Nenhuma categoria encontrada",
+      "viewProducts": "Ver Produtos"
+    },
+    "filters": {
+      "brands": "MARCAS",
+      "filterByPrice": "FILTRAR POR PREÇO",
+      "colours": "CORES",
+      "filter": "FILTRAR"
+    },
+    "cart": {
+      "myCart": "MEU CARRINHO",
+      "empty": "Carrinho vazio",
+      "total": "Total"
+    },
+    "search": {
+      "title": "Resultados da Pesquisa",
+      "noResults": "Nenhum produto encontrado",
+      "error": "Erro ao pesquisar produtos",
+      "searching": "Pesquisando produtos..."
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Senha",
+      "button": "Entrar",
+      "noAccount": "Não tem conta?",
+      "register": "Criar conta",
+      "forgotPassword": "Esqueceu a senha?"
+    },
+    "register": {
+      "title": "Criar Conta",
+      "name": "Nome Completo",
+      "email": "Email",
+      "password": "Senha",
+      "confirmPassword": "Confirmar Senha",
+      "button": "Criar Conta",
+      "haveAccount": "Já tem conta?",
+      "login": "Fazer Login",
+      "backHome": "Voltar para Home"
+    },
+    "account": {
+      "profile": "Meu Perfil",
+      "orders": "Meus Pedidos",
+      "addresses": "Endereços",
+      "password": "Alterar Senha",
+      "settings": "Configurações",
+      "logout": "Sair",
+      "personalInfo": "Informações Pessoais",
+      "shippingAddress": "Endereço de Entrega"
+    },
+    "wishlist": {
+      "title": "Minha Lista de Desejos",
+      "empty": "Sua lista de desejos está vazia",
+      "emptyDescription": "Adicione produtos à sua lista de desejos para salvá-los para depois",
+      "continueShopping": "Continuar Comprando",
+      "addToCart": "Adicionar ao Carrinho",
+      "remove": "Remover",
+      "summary": "Resumo",
+      "items": "Quantidade de Itens",
+      "estimatedTotal": "Total Estimado",
+      "checkout": "Finalizar Compra"
+    },
+    "contact": {
+      "title": "Entre em Contato",
+      "subtitle": "Estamos aqui para ajudar. Envie sua mensagem e responderemos em breve.",
+      "contactInfo": "Informações de Contato",
+      "sendMessage": "Enviar Mensagem",
+      "formDescription": "Preencha o formulário abaixo e nosso time entrará em contato com você o mais breve possível.",
+      "name": "Nome",
+      "namePlaceholder": "Digite seu nome completo",
+      "email": "E-mail",
+      "emailPlaceholder": "Digite seu e-mail",
+      "phone": "Telefone",
+      "phonePlaceholder": "(00) 00000-0000",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Qual é o assunto?",
+      "message": "Mensagem",
+      "messagePlaceholder": "Digite sua mensagem aqui...",
+      "send": "Enviar Mensagem",
+      "sending": "Enviando",
+      "messageSent": "Mensagem enviada com sucesso! Obrigado por entrar em contato.",
+      "sendError": "Erro ao enviar mensagem. Por favor, tente novamente.",
+      "requiredFields": "Por favor, preencha todos os campos obrigatórios.",
+      "followUs": "Nos Acompanhe"
+    },
+    "footer": {
+      "aboutStore": "Sobre a Loja",
+      "storeDescription": "Descubra um mundo de moda, eletrônicos e muito mais. Qualidade premium com preços imbatíveis.",
+      "followUs": "Siga-nos",
+      "categories": "Categorias",
+      "support": "Suporte",
+      "faq": "Perguntas Frequentes",
+      "shipping": "Informações de Envio",
+      "returns": "Devoluções",
+      "terms": "Termos e Condições",
+      "privacy": "Política de Privacidade",
+      "contact": "Contato",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "address": "Endereço",
+      "hours": "Horários",
+      "newsletter": "Inscreva-se na Newsletter",
+      "newsletterPlaceholder": "Digite seu e-mail",
+      "subscribe": "Inscrever",
+      "subscriptionSuccess": "Obrigado por se inscrever!",
+      "paymentMethods": "Formas de Pagamento",
+      "copyright": "© 2026 Ecommerce. Todos os direitos reservados.",
+      "security": "Site Seguro"
+    },
+    "checkout": {
+      "title": "Finalizar Compra",
+      "personal": "Dados Pessoais",
+      "shipping": "Endereço",
+      "payment": "Pagamento",
+      "personalInfo": "Informações Pessoais",
+      "shippingAddress": "Endereço de Entrega",
+      "paymentInfo": "Informações de Pagamento"
+    }
+  },
+  "en": {
+    "header": {
+      "welcome": "Welcome to Ecommerce",
+      "home": "HOME",
+      "myAccount": "My Account",
+      "myWishlist": "My Wishlist",
+      "checkout": "Checkout",
+      "login": "Log in",
+      "logout": "Log Out",
+      "searchPlaceholder": "Search store here..."
+    },
+    "navigation": {
+      "home": "HOME",
+      "about": "ABOUT US",
+      "men": "MEN",
+      "women": "WOMEN",
+      "electronics": "ELECTRONIC",
+      "contact": "CONTACT US"
+    },
+    "hero": {
+      "title": "FASHION FOR MEN",
+      "description": "That this group would somehow form a family that's the way we all became the Brady Bunch. Love exciting and new. Come aboard we're expecting you. On the most exciting show life's sweetest reward Let it flow it floats back to you!",
+      "shopNow": "SHOP NOW"
+    },
+    "products": {
+      "hotDeals": "HOT DEALS",
+      "inStock": "IN STOCK",
+      "outOfStock": "OUT OF STOCK",
+      "addToCart": "Add to Cart"
+    },
+    "categories": {
+      "title": "CATEGORIES",
+      "noCategoriesFound": "No categories found",
+      "viewProducts": "View Products"
+    },
+    "filters": {
+      "brands": "BRANDS",
+      "filterByPrice": "FILTER BY PRICE",
+      "colours": "COLOURS",
+      "filter": "FILTER"
+    },
+    "cart": {
+      "myCart": "MY CART",
+      "empty": "Empty Cart",
+      "total": "Total"
+    },
+    "search": {
+      "title": "Search Results",
+      "noResults": "No products found",
+      "error": "Error searching for products",
+      "searching": "Searching products..."
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "button": "Log In",
+      "noAccount": "Don't have an account?",
+      "register": "Create account",
+      "forgotPassword": "Forgot your password?"
+    },
+    "register": {
+      "title": "Create Account",
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "button": "Create Account",
+      "haveAccount": "Already have an account?",
+      "login": "Log In",
+      "backHome": "Back to Home"
+    },
+    "account": {
+      "profile": "My Profile",
+      "orders": "My Orders",
+      "addresses": "Addresses",
+      "password": "Change Password",
+      "settings": "Settings",
+      "logout": "Log Out",
+      "personalInfo": "Personal Information",
+      "shippingAddress": "Shipping Address"
+    },
+    "wishlist": {
+      "title": "My Wishlist",
+      "empty": "Your wishlist is empty",
+      "emptyDescription": "Add products to your wishlist to save them for later",
+      "continueShopping": "Continue Shopping",
+      "addToCart": "Add to Cart",
+      "remove": "Remove",
+      "summary": "Summary",
+      "items": "Number of Items",
+      "estimatedTotal": "Estimated Total",
+      "checkout": "Checkout"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "We're here to help. Send us your message and we'll respond shortly.",
+      "contactInfo": "Contact Information",
+      "sendMessage": "Send a Message",
+      "formDescription": "Fill out the form below and our team will get back to you as soon as possible.",
+      "name": "Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "phone": "Phone",
+      "phonePlaceholder": "(00) 00000-0000",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is the subject?",
+      "message": "Message",
+      "messagePlaceholder": "Type your message here...",
+      "send": "Send Message",
+      "sending": "Sending",
+      "messageSent": "Message sent successfully! Thank you for contacting us.",
+      "sendError": "Error sending message. Please try again.",
+      "requiredFields": "Please fill in all required fields.",
+      "followUs": "Follow Us"
+    },
+    "footer": {
+      "aboutStore": "About Store",
+      "storeDescription": "Discover a world of fashion, electronics and much more. Premium quality at unbeatable prices.",
+      "followUs": "Follow Us",
+      "categories": "Categories",
+      "support": "Support",
+      "faq": "Frequently Asked Questions",
+      "shipping": "Shipping Information",
+      "returns": "Returns",
+      "terms": "Terms and Conditions",
+      "privacy": "Privacy Policy",
+      "contact": "Contact",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "hours": "Hours",
+      "newsletter": "Subscribe to Newsletter",
+      "newsletterPlaceholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "subscriptionSuccess": "Thank you for subscribing!",
+      "paymentMethods": "Payment Methods",
+      "copyright": "© 2026 Ecommerce. All rights reserved.",
+      "security": "Secure Site"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "personal": "Personal Data",
+      "shipping": "Address",
+      "payment": "Payment",
+      "personalInfo": "Personal Information",
+      "shippingAddress": "Shipping Address",
+      "paymentInfo": "Payment Information"
+    }
+  },
+  "es": {
+    "header": {
+      "welcome": "Bienvenido a Ecommerce",
+      "home": "INICIO",
+      "myAccount": "Mi Cuenta",
+      "myWishlist": "Mi Lista de Deseos",
+      "checkout": "Carrito de Compra",
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión",
+      "searchPlaceholder": "Buscar en la tienda..."
+    },
+    "navigation": {
+      "home": "INICIO",
+      "about": "SOBRE NOSOTROS",
+      "men": "HOMBRES",
+      "women": "MUJERES",
+      "electronics": "ELECTRÓNICA",
+      "contact": "CONTACTO"
+    },
+    "hero": {
+      "title": "MODA PARA HOMBRES",
+      "description": "Este grupo de alguna manera formaría una familia que es la forma en que todos nos convertimos en el Brady Bunch. Ama lo emocionante y nuevo. Sube a bordo, te estamos esperando. En el programa más emocionante la recompensa más dulce de la vida. ¡Déjalo fluir, flota de vuelta a ti!",
+      "shopNow": "COMPRAR AHORA"
+    },
+    "products": {
+      "hotDeals": "OFERTAS CALIENTES",
+      "inStock": "EN STOCK",
+      "outOfStock": "AGOTADO",
+      "addToCart": "Añadir al Carrito"
+    },
+    "categories": {
+      "title": "CATEGORÍAS",
+      "noCategoriesFound": "No se encontraron categorías",
+      "viewProducts": "Ver Productos"
+    },
+    "filters": {
+      "brands": "MARCAS",
+      "filterByPrice": "FILTRAR POR PRECIO",
+      "colours": "COLORES",
+      "filter": "FILTRAR"
+    },
+    "cart": {
+      "myCart": "MI CARRITO",
+      "empty": "Carrito Vacío",
+      "total": "Total"
+    },
+    "search": {
+      "title": "Resultados de Búsqueda",
+      "noResults": "No se encontraron productos",
+      "error": "Error al buscar productos",
+      "searching": "Buscando productos..."
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "button": "Iniciar sesión",
+      "noAccount": "¿No tienes cuenta?",
+      "register": "Crear cuenta",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "name": "Nombre Completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "button": "Crear Cuenta",
+      "haveAccount": "¿Ya tienes cuenta?",
+      "login": "Iniciar sesión",
+      "backHome": "Volver a Inicio"
+    },
+    "account": {
+      "profile": "Mi Perfil",
+      "orders": "Mis Pedidos",
+      "addresses": "Direcciones",
+      "password": "Cambiar Contraseña",
+      "settings": "Configuración",
+      "logout": "Cerrar sesión",
+      "personalInfo": "Información Personal",
+      "shippingAddress": "Dirección de Envío"
+    },
+    "wishlist": {
+      "title": "Mi Lista de Deseos",
+      "empty": "Tu lista de deseos está vacía",
+      "emptyDescription": "Añade productos a tu lista de deseos para guardarlos para más tarde",
+      "continueShopping": "Continuar Comprando",
+      "addToCart": "Añadir al Carrito",
+      "remove": "Eliminar",
+      "summary": "Resumen",
+      "items": "Número de Artículos",
+      "estimatedTotal": "Total Estimado",
+      "checkout": "Finalizar Compra"
+    },
+    "contact": {
+      "title": "Ponte en Contacto",
+      "subtitle": "Estamos aquí para ayudarte. Envía tu mensaje y responderemos pronto.",
+      "contactInfo": "Información de Contacto",
+      "sendMessage": "Enviar Mensaje",
+      "formDescription": "Completa el formulario a continuación y nuestro equipo se pondrá en contacto contigo lo antes posible.",
+      "name": "Nombre",
+      "namePlaceholder": "Ingresa tu nombre completo",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "Ingresa tu correo electrónico",
+      "phone": "Teléfono",
+      "phonePlaceholder": "(00) 00000-0000",
+      "subject": "Asunto",
+      "subjectPlaceholder": "¿Cuál es el asunto?",
+      "message": "Mensaje",
+      "messagePlaceholder": "Escribe tu mensaje aquí...",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando",
+      "messageSent": "¡Mensaje enviado correctamente! Gracias por ponerte en contacto con nosotros.",
+      "sendError": "Error al enviar el mensaje. Por favor, intenta de nuevo.",
+      "requiredFields": "Por favor, completa todos los campos requeridos.",
+      "followUs": "Síguenos"
+    },
+    "footer": {
+      "aboutStore": "Sobre la Tienda",
+      "storeDescription": "Descubre un mundo de moda, electrónica y mucho más. Calidad premium a precios imbatibles.",
+      "followUs": "Síguenos",
+      "categories": "Categorías",
+      "support": "Soporte",
+      "faq": "Preguntas Frecuentes",
+      "shipping": "Información de Envío",
+      "returns": "Devoluciones",
+      "terms": "Términos y Condiciones",
+      "privacy": "Política de Privacidad",
+      "contact": "Contacto",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "hours": "Horarios",
+      "newsletter": "Suscribirse a Boletín",
+      "newsletterPlaceholder": "Ingresa tu correo electrónico",
+      "subscribe": "Suscribirse",
+      "subscriptionSuccess": "¡Gracias por suscribirse!",
+      "paymentMethods": "Métodos de Pago",
+      "copyright": "© 2026 Ecommerce. Todos los derechos reservados.",
+      "security": "Sitio Seguro"
+    },
+    "checkout": {
+      "title": "Finalizar Compra",
+      "personal": "Datos Personales",
+      "shipping": "Dirección",
+      "payment": "Pago",
+      "personalInfo": "Información Personal",
+      "shippingAddress": "Dirección de Envío",
+      "paymentInfo": "Información de Pago"
+    }
+  }
+}
