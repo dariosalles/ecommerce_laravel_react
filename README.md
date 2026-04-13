@@ -1,201 +1,374 @@
 # 🛍️ E-Com Shop
 
-Um e-commerce de qualidade profissional construído com **Laravel 11** + **React 18**, containerizado com **Docker** para facilitar desenvolvimento e deployment.
+Um e-commerce completo construído com **Laravel 11** e **React**, containerizado com Docker para facilitar desenvolvimento e deployment.
 
-🚀 **Status**: Em desenvolvimento - **85% completo**
+## 📋 Visão Geral do Projeto
 
----
+O **E-Com Shop** é uma plataforma de e-commerce robusta e escalável com arquitetura moderna:
 
-## 📋 Visão Rápida
+- **Backend**: Laravel 11 API REST (Nginx + PHP 8.2 + MySQL)
+- **Frontend**: React 18 com Context API e routing
+- **Database**: MySQL 8.0 com seeds de exemplo
+- **Containerização**: Docker Compose para dev/prod
 
-| Aspecto | Detalhes |
-|--------|----------|
-| **Backend** | Laravel 11 API REST |
-| **Frontend** | React 18 com Context API |
-| **Database** | MySQL 8.0 |
-| **Containerização** | Docker Compose |
-| **Linguagens** | PT-BR, EN, ES |
-| **Design** | Mobile-first, Responsivo |
+**Status do Projeto**: Em desenvolvimento ✅ **82% completo** (v0.9)
 
 ---
 
-## 🚀 Quick Start
+## ✅ Features Implementadas
 
-```bash
-# Clone o repositório
-git clone <repo-url>
-cd ecommerce
+### 🔐 Autenticação & Autorização
+- ✅ Registro de usuários com validação
+- ✅ Login com JWT (Laravel Sanctum)
+- ✅ Logout seguro
+- ✅ Recuperação de senha
+- ✅ Roles de usuário (admin, customer)
 
-# Suba os containers
-docker-compose up -d
+### 📦 Gerenciamento de Produtos
+- ✅ CRUD completo de produtos
+- ✅ Atribuições de produto: categorias, marcas, cores
+- ✅ Sistema de imagens de produtos
+- ✅ Busca e filtros por categoria/marca/cor
+- ✅ Produtos em destaque (featured)
+- ✅ Avaliações e comentários de clientes
 
-# Setup do backend
-docker-compose exec app composer install
-docker-compose exec app php artisan key:generate
-docker-compose exec app php artisan migrate:fresh --seed
+### 🏷️ Categorias e Marcas
+- ✅ CRUD de categorias com status
+- ✅ Categorias em destaque
+- ✅ CRUD de marcas
+- ✅ Associação produto-categoria-marca
 
-# Setup do frontend
-cd frontend
-npm install
-npm start
-```
+### 🎨 Cores
+- ✅ Gerenciamento de cores disponíveis
+- ✅ Cores por produto
 
-📍 **Acesso:**
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8080/api
-- Database: http://localhost:8081
+### 🎯 Destaques (Hero Carousel)
+- ✅ Featured highlights com imagens
+- ✅ API para listar destaques
+- ✅ Imagens armazenadas localmente
+- ✅ Download automático de imagens
+
+### 📦 Pedidos (Orders)
+- ✅ CRUD completo de pedidos
+- ✅ Sistema de itens de pedido (OrderItems)
+- ✅ Números únicos e rastreáveis
+- ✅ Controle de estoque automático
+- ✅ Validação de estoque na criação
+- ✅ Cancelamento com devolução de estoque
+- ✅ Status: pending, processing, shipped, delivered, cancelled
+- ✅ Rastreamento com código de entrega
+- ✅ Relacionamentos: usuário, produtos, métodos de pagamento, frete
+- ✅ Transações BD com rollback em erro
+- ✅ Métodos utilitários: generateOrderNumber(), updateTotal(), markAsShipped(), etc
+
+### 🛒 Carrinho de Compras (Frontend)
+- ✅ Adicionar/remover produtos
+- ✅ Atualizar quantidades
+- ✅ Cálculo de totais
+- ✅ Persistência com Context API
+- ✅ Integração com backend
+
+### 📄 Páginas de Suporte (Frontend)
+- ✅ FAQ (Perguntas Frequentes)
+- ✅ Informações de Envio
+- ✅ Política de Devoluções
+- ✅ Termos e Condições
+- ✅ Política de Privacidade
+
+### 🏪 Configurações da Loja
+- ✅ CRUD de configurações gerais
+- ✅ Dados de contato (email, telefone, endereço)
+- ✅ Métodos de pagamento
+- ✅ Métodos de envio
+- ✅ Configurações de frete
+
+### 🎨 UI/UX Frontend
+- ✅ Design responsivo (Mobile-first)
+- ✅ Sistema de cores consistente
+- ✅ Navegação intuitiva
+- ✅ Hero carousel com destaques
+- ✅ Grid de produtos com paginação
+- ✅ Página de detalhe de produto
+- ✅ Página de contato
+- ✅ Footer completo com links
+
+### 🌍 Multilíngue
+- ✅ Suporte para PT-BR, EN, ES
+- ✅ Sistema de traduções componentizado
+- ✅ Context API para gerenciamento de idioma
+
+### 📸 Gerenciamento de Imagens
+- ✅ Storage local de imagens de produtos
+- ✅ Storage local de imagens de destaques
+- ✅ Helper para conversão de URLs (backend → frontend)
+- ✅ Estrutura de diretórios organizada
+
+### 👥 Sistema de Admin Separado (v0.9)
+- ✅ Tabela `admins` dedicada (separada de `users`)
+- ✅ Roles: super_admin, admin, moderator
+- ✅ Método de autenticação separado: `/api/admin/login`
+- ✅ Controle de acesso por role
+- ✅ AdminAuthController para login/logout/perfil
+- ✅ AdminManagementController para gerenciar outros admins
+- ✅ Last login tracking para auditoria
+- ✅ Ativação/desativação de contas de admin
+- ✅ Seeder com credenciais padrão
 
 ---
 
-## ✅ O Que Já Está Pronto
+## 🚀 Features Faltando
 
-### Backend (Laravel)
-- ✅ API REST completa
-- ✅ Autenticação com JWT (Sanctum)
-- ✅ **Admin Authentication System** (v0.9) - Tabela separada de admins com sistema de roles
-- ✅ Modelos: Produtos, Categorias, Marcas, Cores, Destaques, Admins
-- ✅ Sistema de Pedidos (Orders & OrderItems)
-- ✅ Seeds com dados de exemplo
-- ✅ Gerenciamento de imagens
-- ✅ Configurações da loja
-- ✅ Dados de contato e métodos de pagamento
+### 🛍️ Funcionalidades Core
+- ⏳ **Checkout completo**: Integração com gateway de pagamento (Stripe/MercadoPago)
+- ⏳ **Carrinho Persistente**: Salvar carrinho no backend (usuário logado)
+- ⏳ **Favoritos**: Wishlist com persistência
 
-### Frontend (React)
-- ✅ Página inicial com hero carousel
-- ✅ Grid de produtos com filtros
-- ✅ Página de detalhe do produto
-- ✅ Carrinho de compras funcional
-- ✅ Sistema de autenticação (usuários)
-- ✅ **Admin Panel Dashboard** (v0.9) - CRUD completo de produtos, categorias, pedidos e usuários
-- ✅ **Admin Login** - Autenticação separada com JWT
-- ✅ Minha conta e meus favoritos
-- ✅ Histórico de pedidos
-- ✅ 5 páginas de suporte (FAQ, Envio, Devoluções, Termos, Privacidade)
-- ✅ Suporte multilíngue (PT-BR/EN/ES)
-- ✅ Design totalmente responsivo
+### 💳 Pagamentos
+- ⏳ Integração com **Stripe**
+- ⏳ Integração com **MercadoPago**
+- ⏳ Sistema de vouchers/cupons de desconto
+- ⏳ Cálculo automático de taxa de frete
 
----
+### 📦 Estoque & Pedidos
+- ⏳ Controle de estoque por produto
+- ⏳ Notificação de produtos esgotados
+- ⏳ Sistema de backorder
+- ⏳ Rastreamento de pedidos em tempo real
 
-## 🚀 O Que Ainda Falta
+### 🔍 Busca Avançada
+- ⏳ Busca full-text com Elasticsearch
+- ⏳ Filtros avançados (preço, avaliação, etc)
+- ⏳ Autocomplete no campo de busca
+- ⏳ Busca por atributos do produto
 
-### Core Features
-- ⏳ Checkout com pagamento (Stripe/MercadoPago)
-- ⏳ Página de detalhe do pedido
-- ⏳ Cancelamento de pedidos
-- ⏳ Sistema de avaliações
-- ⏳ Cupons e vouchers
-- ⏳ Carrinho persistente no backend
+### 📧 Emails & Notificações
+- ⏳ Email de confirmação de pedido
+- ⏳ Email de rastreamento
+- ⏳ Email de recuperação de senha
+- ⏳ Newsletter/Marketing emails
+- ⏳ Notificações em tempo real (WebSocket)
 
-### Admin
-- ⏳ Relatórios e estatísticas avançadas
-- ⏳ Upload em massa de produtos
-- ⏳ Auditoria de ações de admin
-- ⏳ 2FA para admins
-- ⏳ Gerenciamento de admins no painel
+### ⭐ Avaliações & Reviews
+- ⏳ Sistema completo de avaliações
+- ⏳ Média de estrelas por produto
+- ⏳ Moderação de comentários
+- ⏳ Respostas do vendedor a reviews
 
-### Extras
-- ⏳ Busca full-text avançada
-- ⏳ Emails transacionais
-- ⏳ App mobile (React Native)
-- ⏳ Sistema de recomendações
+### 📱 Mobile
+- ⏳ App mobile nativa (React Native)
+- ⏳ Push notifications
+- ⏳ Integração com Apple Pay/Google Pay
+
+### 🔒 Segurança
+- ⏳ 2FA (Autenticação de Dois Fatores)
+- ⏳ Rate limiting por IP
+- ⏳ Validação CSRF
+- ⏳ Proteção contra XSS/SQL Injection
+- ⏳ Audit logs de ações administrativas
+
+### 📈 Performance & SEO
+- ⏳ Otimização de imagens (resizing automático)
 - ⏳ Cache (Redis)
+- ⏳ Paginação otimizada
+- ⏳ Meta tags dinâmicas
+- ⏳ Sitemap XML
+- ⏳ Schema JSON-LD
+
+### 🎁 Marketing
+- ⏳ Sistema de cupons/vouchers
+- ⏳ Programas de fidelização
+- ⏳ Referral program
+- ⏳ Flash sales e promoções
+
+### 🛣️ SEO & Rotas
+- ⏳ URL amigáveis para produtos (slug)
+- ⏳ Breadcrumbs de navegação
+- ⏳ Meta descriptions dinâmicas
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🏗️ Arquitetura
 
 ```
 ecommerce/
-├── backend/                    # Laravel API (⏳ 82% pronto)
+├── backend/                    # Laravel API
 │   ├── app/
-│   │   ├── Http/
-│   │   │   ├── Controllers/
-│   │   │   │   ├── Api/        # REST Controllers (Auth, Products, Orders, etc)
-│   │   │   │   └── AdminAuthController
-│   │   │   └── Middleware/
-│   │   │       └── AuthenticateAdmin.php
-│   │   └── Models/             # Eloquent models (User, Product, Order, Admin, etc)
+│   │   ├── Http/Controllers/   # Controllers da API
+│   │   ├── Models/             # Modelos (Product, Category, etc)
+│   │   └── Providers/
 │   ├── database/
-│   │   ├── migrations/
-│   │   ├── factories/
-│   │   └── seeders/
-│   ├── routes/api.php
-│   └── public/images/          # Imagens de produtos
+│   │   ├── migrations/         # Schema do banco
+│   │   ├── factories/          # Factory para testes
+│   │   └── seeders/            # Dados de exemplo
+│   ├── routes/
+│   │   ├── api.php             # Rotas da API
+│   │   └── web.php             # Rotas web
+│   └── public/images/          # Imagens dos produtos
 │
-├── frontend/                   # React App (⏳ 85% pronto)
+├── frontend/                   # React App
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── admin/          # 🆕 Admin Dashboard & Components
-│   │   │   │   ├── AdminPage.js
-│   │   │   │   ├── AdminLogin.js
-│   │   │   │   ├── AdminDashboard.js
-│   │   │   │   ├── AdminOrders.js
-│   │   │   │   ├── AdminProducts.js
-│   │   │   │   ├── AdminCategories.js
-│   │   │   │   ├── AdminUsers.js
-│   │   │   │   └── AdminLayout.css
-│   │   │   └── ...             # User-facing components
-│   │   ├── contexts/
-│   │   ├── services/api.js     # 🆕 API client with auth interceptor
-│   │   └── locales/
-│   └── package.json
+│   │   ├── components/         # Componentes React
+│   │   ├── contexts/           # Auth, Cart, Language, etc
+│   │   ├── services/           # API client (axios)
+│   │   ├── locales/            # Traduções
+│   │   └── utils/              # Helpers
+│   └── public/
 │
-└── docker-compose.yml
+└── docker-compose.yml          # Orquestração dos containers
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Como Executar
 
-### Backend
-- **Framework**: Laravel 11
-- **PHP**: 8.2
-- **Database**: MySQL 8.0
-- **Auth**: Laravel Sanctum (JWT)
-- **Server**: Nginx
+### Pré-requisitos
+- Docker e Docker Compose instalados
+- Git
 
-### Frontend
-- **Library**: React 18
-- **Routing**: React Router v6
-- **HTTP**: Axios
-- **Estado**: Context API
-- **Styling**: CSS3
+### Setup Inicial
 
-### DevOps
-- **Containerização**: Docker, Docker Compose
-- **Volume Sharing**: Local development
+```bash
+# 1. Clonar o repositório
+git clone <repo-url>
+cd ecommerce
+
+# 2. Subir os containers
+docker-compose up -d
+
+# 3. Instalar dependências do backend
+docker-compose exec app composer install
+
+# 4. Gerar chave de aplicação
+docker-compose exec app php artisan key:generate
+
+# 5. Rodar migrações e seeds
+docker-compose exec app php artisan migrate:fresh --seed
+
+# 6. Instalar dependências do frontend
+cd frontend
+npm install
+
+# 7. Iniciar o servidor React
+npm start
+```
+
+### URLs de Acesso
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8080/api
+- **Adminer (DB)**: http://localhost:8081
+
+### 🌐 Sistema em Produção (AWS)
+- **Production**: http://ec2-52-14-78-111.us-east-2.compute.amazonaws.com
+
 
 ---
 
-## 📸 Paleta de Cores
+## 📚 Banco de Dados
 
-- **Primary**: `#667eea` (Azul)
-- **Secondary**: `#764ba2` (Roxo)
-- **Success**: `#4caf50` (Verde)
-- **Error**: `#f44336` (Vermelho)
-- **Dark**: `#2c3e50` (Cinza escuro)
+### Modelos Implementados
+- `User` - Usuários do sistema
+- `Product` - Produtos
+- `Category` - Categorias
+- `Brand` - Marcas
+- `Color` - Cores
+- `FeaturedHighlight` - Destaques do hero
+- `Order` - Pedidos
+- `OrderItem` - Itens dos pedidos
+- `PaymentMethod` - Métodos de pagamento
+- `ShippingMethod` - Métodos de frete
+- `StoreContact` - Dados de contato da loja
+- `StoreSetting` - Configurações gerais
+
+### Relacionamentos
+- Produto → Categoria (N:1)
+- Produto → Marca (N:1)
+- Produto → Cor (N:M)
+- Usuário → Pedidos (1:N)
+- Pedido → Itens de Pedido (1:N)
+- Pedido → Método de Pagamento (N:1)
+- Pedido → Método de Frete (N:1)
+- Produto → Itens de Pedido (1:N)
 
 ---
 
-## 📚 Documentação Detalhada
+## 🛠️ API Endpoints
 
-- 📖 [Backend README](./backend/README.md)
-- 📖 [Frontend README](./frontend/README.md)
+### Autenticação
+```
+POST   /api/register           # Criar conta
+POST   /api/login              # Fazer login
+POST   /api/logout             # Sair (requer token)
+POST   /api/forgot-password    # Recuperar senha
+```
+
+### Produtos
+```
+GET    /api/products           # Listar produtos
+GET    /api/products/:id       # Detalhe do produto
+GET    /api/categories         # Listar categorias
+GET    /api/brands             # Listar marcas
+GET    /api/colors             # Listar cores
+GET    /api/featured-highlights # Destaques do hero
+```
+
+### Configurações
+```
+GET    /api/store/settings     # Configurações da loja
+GET    /api/store/contacts     # Dados de contato
+GET    /api/payment-methods    # Métodos de pagamento
+GET    /api/shipping-methods   # Métodos de frete
+```
+
+### Pedidos (Requer Autenticação)
+```
+GET    /api/orders             # Listar pedidos do usuário
+GET    /api/orders/:id         # Detalhe de um pedido
+POST   /api/orders             # Criar novo pedido
+POST   /api/orders/:id/cancel  # Cancelar pedido
+PUT    /api/orders/:id/status  # Atualizar status (admin)
+```
 
 ---
 
-## 🌍 Idiomas Suportados
-
-- 🇧🇷 Português Brasileiro (PT-BR) - Padrão
+## 🎨 Linguagens Suportadas
+- 🇧🇷 Português Brasileiro (PT-BR)
 - 🇺🇸 English (EN)
 - 🇪🇸 Español (ES)
 
 ---
 
-## 🔄 Fluxo de Desenvolvimento
+## 🔐 Credenciais de Teste
 
-### 1️⃣ Criar Feature no Backend
+### Admin
+```
+📧 Email: admin@ecommerce.local
+🔑 Senha: password123
+👥 Role: super_admin
+🔗 POST /api/admin/login
+```
 
+### Moderador
+```
+📧 Email: moderator@ecommerce.local
+🔑 Senha: password123
+👥 Role: moderator
+🔗 POST /api/admin/login
+```
+
+### Cliente Normal (Seed)
+```
+📧 Email: user@example.com
+🔑 Senha: password123
+🔗 POST /api/login
+```
+
+**Nota**: As credenciais são geradas pelo `AdminSeeder` e `UserFactory` durante `php artisan migrate:fresh --seed`
+
+---
+
+## 🔄 Workflow de Desenvolvimento
+
+### 1. Criar um novo feature
 ```bash
 # Criar migration
 docker-compose exec app php artisan make:migration create_orders_table
@@ -203,132 +376,80 @@ docker-compose exec app php artisan make:migration create_orders_table
 # Criar model
 docker-compose exec app php artisan make:model Order
 
-# Rodar migrações
+# Criar controller
+docker-compose exec app php artisan make:controller ProductController
+```
+
+### 2. Atualizar banco de dados
+```bash
 docker-compose exec app php artisan migrate
+docker-compose exec app php artisan migrate:rollback  # Desfazer
 ```
 
-### 2️⃣ Criar Componente no Frontend
-
+### 3. Executar seeds
 ```bash
-# Frontend já está com hot reload
-# Editar arquivo em src/components/
-# Salvar arquivo → Atualizar automático no navegador
-```
-
-### 3️⃣ Testar a Integração
-
-```bash
-# Backend: http://localhost:8080/api/
-# Frontend: http://localhost:3000
+docker-compose exec app php artisan db:seed --class=ProductSeeder
+docker-compose exec app php artisan migrate:fresh --seed  # Reset completo
 ```
 
 ---
 
-## 🔐 Configuração de Segurança
+## 📝 Convencções do Projeto
 
-- ✅ JWT tokens com Sanctum
-- ✅ CORS configurado
-- ✅ Validação de entrada
-- ✅ Hash de senhas com Bcrypt
-- ✅ Proteção contra XSS (React)
-- ✅ SQL Injection prevention (Eloquent ORM)
+### Backend
+- Controllers em `PascalCase` (ex: `ProductController`)
+- Métodos em `camelCase` (ex: `getProducts()`)
+- Models em `PascalCase` (ex: `Product`)
+- Rotas em lowercase com hífen (ex: `/api/featured-highlights`)
 
----
+### Frontend
+- Componentes em `PascalCase` (ex: `ProductGrid.js`)
+- Arquivos de página em `PascalCase` (ex: `ContactPage.js`)
+- Context em `PascalCase` (ex: `CartContext.js`)
+- Variáveis e funções em `camelCase`
+- CSS modules quando necessário
 
-## 📊 Status de Implementação
-
-```
-Backend:  ███████████░░░░░░░░  75%
-Frontend: █████████░░░░░░░░░░  65%
-Integrações: ███░░░░░░░░░░░░░  15%
-Overall:  ████████░░░░░░░░░░░  65%
-```
+### Dados
+- Conteúdo hardcoded em **Português Brasileiro (PT-BR)**
+- Traduções disponíveis via Context
+- Imagens armazenadas em `/backend/public/images/`
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Containers não iniciam
+### Container não inicia
 ```bash
 docker-compose logs app
 docker-compose logs mysql
 ```
 
-### Port already in use
+### Erro de permissão no banco
 ```bash
-# Mudar port no docker-compose.yml
-# ou
-docker-compose down
+docker-compose exec app chown -R www-data:www-data /var/www/storage
 ```
 
-### Erro de conectividade
-- Garantir que backend está em http://localhost:8080
-- Verificar se MySQL está rodando
-- Checar variáveis de ambiente
-
----
-
-## 📖 Exemplos de Uso
-
-### Login
-```javascript
-// Frontend
-const { login } = useAuth();
-await login(email, password);
-```
-
-### Adicionar ao Carrinho
-```javascript
-// Frontend
-const { addToCart } = useCart();
-addToCart(productId, quantity);
-```
-
-### Buscar Produtos
-```javascript
-// Frontend
-const products = await api.get('/products');
+### Limpar cache
+```bash
+docker-compose exec app php artisan cache:clear
+docker-compose exec app php artisan config:clear
 ```
 
 ---
 
-## 📝 Convenções
+## 📦 Dependências Principais
 
-### Nomes
-- **Backend**: `PascalCase` para models e controllers
-- **Frontend**: `PascalCase` para componentes, `camelCase` para functions
-- **Rotas API**: lowercase com hífen (ex: `/api/featured-highlights`)
+### Backend
+- Laravel 11
+- PHP 8.2
+- MySQL 8.0
+- Laravel Sanctum (JWT)
 
-### Dados
-- Conteúdo hardcoded em **PT-BR**
-- Traduções via Context API
-- Imagens em `/backend/public/images/`
-
----
-
-## 📄 Licença
-
-MIT License - Veja [LICENSE](./LICENSE) para detalhes
-
----
-
-## 👥 Contribuindo
-
-1. Faça um fork
-2. Crie uma branch (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'Add MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
----
-
-## 🎯 Próximas Prioridades
-
-1. ✅ Backend API 70% → 85%
-2. ✅ Frontend 65% → 80%
-3. ⏳ Integração de pagamentos
-4. ⏳ Dashboard administrativo
-5. ⏳ Sistema de pedidos
+### Frontend
+- React 18
+- React Router v6
+- Axios
+- Context API
 
 ---
 
@@ -339,40 +460,21 @@ MIT License - Veja [LICENSE](./LICENSE) para detalhes
 - 📧 Email: [dariosalles0@gmail.com](mailto:dariosalles0@gmail.com)
 - 💬 WhatsApp: [(12) 988262312](https://wa.me/5512988262312)
 - 🌐 Site: [www.dsxweb.com.br](https://www.dsxweb.com.br)
-- 🐛 Issues: Abra uma issue no repositório
 
 ---
 
-## 📅 Changelog
+## 📄 Licença
 
-### v0.7.0 (Atual - 09/04/2026)
-- ✨ Sistema completo de Pedidos (Orders & OrderItems)
-- ✨ API de pedidos com validação e transações BD
-- ✨ Rastreamento de pedidos com números únicos
-- ✨ Controle de estoque automático
-- ✨ Endpoints: GET/POST/CANCEL/STATUS pedidos
-- 🚀 Backend agora em 75% (era 70%)
-
-### v0.6.0 (09/04/2026)
-- ✨ Adicionar 5 páginas de suporte (FAQ, Envio, Devoluções, Termos, Privacidade)
-- ✨ Atualizar README com documentação completa
-- 🐛 Corrigir URLs de imagens dos destaques do hero
-- 📱 Melhorias responsivas
-
-### v0.5.0
-- ✨ Hero carousel com imagens locais
-- ✨ Grid de produtos funcional
-- 🛒 Carrinho de compras
-
-### v0.4.0
-- 🔐 Autenticação com JWT
-- 👤 Sistema de usuários
-
-### v0.3.0
-- 🌍 Suporte multilíngue
+Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ---
 
-**Última atualização**: 9 de Abril de 2026
+## 👥 Contribuições
+
+Contribuições são bem-vindas! Por favor, faça um fork do projeto e envie um pull request com suas melhorias.
+
+---
+
+**Última atualização**: 13 de Abril de 2026
 
 Feito com ❤️ por Dario Salles
