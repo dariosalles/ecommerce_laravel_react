@@ -257,6 +257,9 @@ npm start
 - **Backend API**: http://localhost:8080/api
 - **Adminer (DB)**: http://localhost:8081
 
+### 🌐 Sistema em Produção (AWS)
+- **Production**: http://ec2-52-14-78-111.us-east-2.compute.amazonaws.com
+
 ---
 
 ## 📚 Banco de Dados
