@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            AdminSeeder::class,
             StoreSettingSeeder::class,
             PaymentMethodSeeder::class,
             ShippingMethodSeeder::class,
