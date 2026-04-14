@@ -17,6 +17,7 @@ function Header() {
   const [showCategoriesMenu, setShowCategoriesMenu] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [storeSettings, setStoreSettings] = useState(null);
 
   useEffect(() => {
     fetchCategories();
@@ -27,6 +28,22 @@ function Header() {
     fetchFeaturedCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    fetchStoreSettings();
+  }, []);
+
+  const fetchStoreSettings = async () => {
+    try {
+      const response = await api.get('/store/settings');
+      setStoreSettings(response.data);
+      if (response.data?.store_name) {
+        document.title = response.data.store_name;
+      }
+    } catch (error) {
+      console.error('Erro ao carregar configurações da loja:', error);
+    }
+  };
 
   const fetchCategories = async () => {
     try {
@@ -75,8 +92,16 @@ function Header() {
         <div className="container">
           <div className="header-content">
             <div className="logo">
-              <h1>E-Com Shop</h1>
-              <p>online store</p>
+              {storeSettings?.logo_url ? (
+                <Link to="/">
+                  <img src={storeSettings.logo_url} alt={storeSettings.store_name || 'Logo'} className="logo-img" />
+                </Link>
+              ) : (
+                <>
+                  <h1>{storeSettings?.store_name || 'E-Com Shop'}</h1>
+                  <p>online store</p>
+                </>
+              )}
             </div>
 
             <div className="search-bar">
