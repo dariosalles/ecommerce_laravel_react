@@ -66,6 +66,9 @@ Route::middleware(\App\Http\Middleware\AuthenticateAdmin::class)->prefix('admin'
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/search', [ProductController::class, 'search']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::put('/products/{id}', [ProductController::class, 'update']);
+Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 Route::get('/categories/featured', [CategoryController::class, 'featured']);
 Route::get('/categories/all', [CategoryController::class, 'index']); // Alias para admin

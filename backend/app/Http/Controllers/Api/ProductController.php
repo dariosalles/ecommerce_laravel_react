@@ -18,6 +18,54 @@ class ProductController extends Controller
         return Product::with('category', 'brand', 'color')->findOrFail($id);
     }
 
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price'       => 'required|numeric|min:0',
+            'stock'       => 'required|integer|min:0',
+            'category_id' => 'nullable|exists:categories,id',
+            'brand_id'    => 'nullable|exists:brands,id',
+            'color_id'    => 'nullable|exists:colors,id',
+            'featured'    => 'nullable|boolean',
+            'image'       => 'nullable|string|max:500',
+        ]);
+
+        $product = Product::create($validated);
+
+        return response()->json($product->load('category', 'brand', 'color'), 201);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $validated = $request->validate([
+            'name'        => 'sometimes|required|string|max:255',
+            'description' => 'nullable|string',
+            'price'       => 'sometimes|required|numeric|min:0',
+            'stock'       => 'sometimes|required|integer|min:0',
+            'category_id' => 'nullable|exists:categories,id',
+            'brand_id'    => 'nullable|exists:brands,id',
+            'color_id'    => 'nullable|exists:colors,id',
+            'featured'    => 'nullable|boolean',
+            'image'       => 'nullable|string|max:500',
+        ]);
+
+        $product->update($validated);
+
+        return response()->json($product->load('category', 'brand', 'color'));
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return response()->json(['message' => 'Produto excluído com sucesso']);
+    }
+
     public function search(Request $request)
     {
         $query = $request->input('q');
