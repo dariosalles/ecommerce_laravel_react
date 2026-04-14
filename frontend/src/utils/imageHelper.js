@@ -1,6 +1,5 @@
 // Helper para converter URLs de imagens para URLs absolutas do backend
-//const API_BASE_URL = 'http://localhost:8080';
-const API_BASE_URL = 'http://ec2-52-14-78-111.us-east-2.compute.amazonaws.com';
+const API_BASE_URL = 'http://localhost:8080';
 
 export const getImageUrl = (imagePath) => {
   if (!imagePath) return null;
