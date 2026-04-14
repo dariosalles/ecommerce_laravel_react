@@ -7,8 +7,7 @@ import './Footer.css';
 function Footer() {
   const { t } = useLanguage();
   const [categories, setCategories] = useState([]);
-  const [storeInfo, setStoreInfo] = useState(null);
-  const [contacts, setContacts] = useState([]);
+
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [storeSettings, setStoreSettings] = useState(null);
   const [email, setEmail] = useState('');
@@ -30,10 +29,6 @@ function Footer() {
       const storeRes = await api.get('/store/settings');
       setStoreSettings(storeRes.data);
       
-      // Buscar contatos
-      const contactsRes = await api.get('/store/contacts');
-      setContacts(contactsRes.data);
-
       // Buscar métodos de pagamento
       const paymentRes = await api.get('/payment-methods');
       setPaymentMethods(paymentRes.data);
@@ -118,52 +113,29 @@ function Footer() {
             <div className="footer-section">
               <h4>{t('footer.contact') || 'Contato'}</h4>
               <div className="contact-info">
-                {contacts.length > 0 ? (
-                  contacts.map((contact, index) => {
-                    let icon = '✉️';
-                    let element = null;
-
-                    if (contact.type === 'email') {
-                      icon = '📧';
-                      element = <a href={`mailto:${contact.value}`}>{contact.value}</a>;
-                    } else if (contact.type === 'phone') {
-                      icon = '📞';
-                      const isWhatsApp = contact.title?.toLowerCase().includes('whatsapp');
-                      if (isWhatsApp) {
-                        element = <a href={`https://wa.me/${contact.value.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{contact.value}</a>;
-                      } else {
-                        element = <a href={`tel:${contact.value.replace(/\D/g, '')}`}>{contact.value}</a>;
-                      }
-                    } else if (contact.type === 'address') {
-                      icon = '📍';
-                      element = <p>{contact.value}</p>;
-                    } else if (contact.type === 'hours') {
-                      icon = '🕐';
-                      element = <p>{contact.value}</p>;
-                    }
-
-                    return (
-                      <div key={index} className="contact-item">
-                        <span className="icon">{icon}</span>
-                        {element}
-                      </div>
-                    );
-                  })
-                ) : (
-                  <>
-                    <div className="contact-item">
-                      <span className="icon">📧</span>
-                      <a href={`mailto:${storeSettings?.store_email}`}>{storeSettings?.store_email}</a>
-                    </div>
-                    <div className="contact-item">
-                      <span className="icon">📞</span>
-                      <a href={`tel:${storeSettings?.store_phone?.replace(/\D/g, '')}`}>{storeSettings?.store_phone}</a>
-                    </div>
-                    <div className="contact-item">
-                      <span className="icon">📍</span>
-                      <p>{storeSettings?.store_address}</p>
-                    </div>
-                  </>
+                {storeSettings?.store_email && (
+                  <div className="contact-item">
+                    <span className="icon">📧</span>
+                    <a href={`mailto:${storeSettings.store_email}`}>{storeSettings.store_email}</a>
+                  </div>
+                )}
+                {storeSettings?.store_phone && (
+                  <div className="contact-item">
+                    <span className="icon">📞</span>
+                    <a href={`tel:${storeSettings.store_phone.replace(/\D/g, '')}`}>{storeSettings.store_phone}</a>
+                  </div>
+                )}
+                {storeSettings?.whatsapp && (
+                  <div className="contact-item">
+                    <span className="icon">💬</span>
+                    <a href={`https://wa.me/${storeSettings.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{storeSettings.whatsapp}</a>
+                  </div>
+                )}
+                {storeSettings?.store_address && (
+                  <div className="contact-item">
+                    <span className="icon">📍</span>
+                    <p>{storeSettings.store_address}</p>
+                  </div>
                 )}
               </div>
             </div>

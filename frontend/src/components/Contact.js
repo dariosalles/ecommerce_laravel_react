@@ -15,7 +15,7 @@ function Contact() {
     message: ''
   });
   const [loading, setLoading] = useState(false);
-  const [storeContacts, setStoreContacts] = useState([]);
+
   const [storeSettings, setStoreSettings] = useState(null);
   const [contacting, setContacting] = useState(false);
 
@@ -26,11 +26,10 @@ function Contact() {
   const fetchContactData = async () => {
     try {
       setContacting(true);
-      const contactsRes = await api.get('/store/contacts');
       const settingsRes = await api.get('/store/settings');
       
-      setStoreContacts(contactsRes.data);
       setStoreSettings(settingsRes.data);
+
     } catch (error) {
       console.error('Erro ao carregar dados de contato:', error);
       showNotification('Erro ao carregar informações de contato', 'error');
@@ -87,20 +86,33 @@ function Contact() {
             <h2>{t('contact.contactInfo')}</h2>
             
             <div className="contact-cards">
-              {storeContacts.map((contact) => (
-                <div key={contact.id} className="contact-card">
-                  <div className="contact-card-icon">
-                    {contact.type === 'email' && '✉️'}
-                    {contact.type === 'phone' && '📞'}
-                    {contact.type === 'address' && '📍'}
-                    {contact.type === 'hours' && '🕐'}
-                  </div>
+              {storeSettings?.store_email && (
+                <div className="contact-card">
+                  <div className="contact-card-icon">✉️</div>
                   <div className="contact-card-content">
-                    <h3>{contact.label}</h3>
-                    <p>{contact.value}</p>
+                    <h3>{t('contact.email')}</h3>
+                    <p>{storeSettings.store_email}</p>
                   </div>
                 </div>
-              ))}
+              )}
+              {storeSettings?.store_phone && (
+                <div className="contact-card">
+                  <div className="contact-card-icon">📞</div>
+                  <div className="contact-card-content">
+                    <h3>{t('contact.phone')}</h3>
+                    <p>{storeSettings.store_phone}</p>
+                  </div>
+                </div>
+              )}
+              {storeSettings?.store_address && (
+                <div className="contact-card">
+                  <div className="contact-card-icon">📍</div>
+                  <div className="contact-card-content">
+                    <h3>{t('contact.address')}</h3>
+                    <p>{storeSettings.store_address}</p>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Redes Sociais */}
@@ -108,6 +120,11 @@ function Contact() {
               <div className="social-media">
                 <h3>{t('contact.followUs')}</h3>
                 <div className="social-links">
+                  {storeSettings.whatsapp && (
+                    <a href={`https://wa.me/${storeSettings.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                      💬 WhatsApp
+                    </a>
+                  )}
                   {storeSettings.instagram && (
                     <a href={storeSettings.instagram} target="_blank" rel="noopener noreferrer" title="Instagram">
                       📱 Instagram

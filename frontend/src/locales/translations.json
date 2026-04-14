@@ -114,7 +114,8 @@
       "messageSent": "Mensagem enviada com sucesso! Obrigado por entrar em contato.",
       "sendError": "Erro ao enviar mensagem. Por favor, tente novamente.",
       "requiredFields": "Por favor, preencha todos os campos obrigatórios.",
-      "followUs": "Nos Acompanhe"
+      "followUs": "Nos Acompanhe",
+      "address": "Endereço"
     },
     "footer": {
       "aboutStore": "Sobre a Loja",
