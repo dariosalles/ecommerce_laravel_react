@@ -44,6 +44,12 @@
   text-transform: uppercase;
 }
 
+.logo-img {
+  max-height: 100px;
+  width: auto;
+  display: block;
+}
+
 .search-bar {
   flex: 1;
   display: flex;
