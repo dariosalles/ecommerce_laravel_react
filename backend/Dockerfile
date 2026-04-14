@@ -18,4 +18,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
+# Garante que o diretório de imagens existe e pertence ao www-data
+RUN mkdir -p /var/www/public/images/products \
+    && chown -R www-data:www-data /var/www/public
+
 CMD ["php-fpm"]

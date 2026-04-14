@@ -74,13 +74,18 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
+        $destDir = public_path('images/products');
+        if (!is_dir($destDir)) {
+            mkdir($destDir, 0755, true);
+        }
+
         $file     = $request->file('image');
         $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '_', $file->getClientOriginalName());
-        $file->move(public_path('images/products'), $filename);
+        $file->move($destDir, $filename);
 
         // Remove imagem anterior se for um arquivo local
         if ($product->image && !str_starts_with($product->image, 'http')) {
-            $oldPath = public_path('images/products/' . $product->image);
+            $oldPath = $destDir . '/' . $product->image;
             if (file_exists($oldPath)) {
                 unlink($oldPath);
             }
