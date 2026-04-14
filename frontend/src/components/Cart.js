@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
+import { getImageUrl } from '../utils/imageHelper';
 import './Cart.css';
 
 function Cart() {
@@ -78,7 +79,15 @@ function Cart() {
                       <td className="product-name-cell">
                         <div className="product-info-cart">
                           <div className="product-image-cart">
-                            <div className="image-placeholder-cart">🖼️</div>
+                            {(item.image_url || item.image) ? (
+                              <img
+                                src={getImageUrl(item.image_url || item.image)}
+                                alt={item.name}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+                              />
+                            ) : (
+                              <div className="image-placeholder-cart">🖼️</div>
+                            )}
                           </div>
                           <div className="product-details-cart">
                             <Link to={`/products/${item.id}`} className="product-name-link">
