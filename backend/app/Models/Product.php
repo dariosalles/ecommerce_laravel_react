@@ -20,6 +20,13 @@ class Product extends Model
         'color_id',
     ];
 
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image ?: null;
+    }
+
     /**
      * Get the category that the product belongs to.
      */

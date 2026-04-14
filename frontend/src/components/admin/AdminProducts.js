@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import api from '../../services/api';
+import { getImageUrl } from '../../utils/imageHelper';
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,11 @@ function AdminProducts() {
     stock: '',
     category_id: '',
     featured: 0,
+    image: '',
   });
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -63,8 +68,32 @@ function AdminProducts() {
       stock: product.stock,
       category_id: product.category_id,
       featured: product.featured,
+      image: product.image || '',
     });
+    setImagePreview(product.image ? getImageUrl(product.image) : null);
     setShowModal(true);
+  };
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file || !editingId) return;
+
+    setUploading(true);
+    try {
+      const data = new FormData();
+      data.append('image', file);
+      const response = await api.post(`/products/${editingId}/image`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      const filename = response.data.image;
+      setFormData((prev) => ({ ...prev, image: filename }));
+      setImagePreview(getImageUrl(filename));
+    } catch (err) {
+      console.error('Erro ao enviar imagem:', err);
+      setError('Erro ao enviar imagem');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleSaveProduct = async () => {
@@ -78,14 +107,9 @@ function AdminProducts() {
       }
       setShowModal(false);
       setEditingId(null);
-      setFormData({
-        name: '',
-        description: '',
-        price: '',
-        stock: '',
-        category_id: '',
-        featured: 0,
-      });
+      setFormData({ name: '', description: '', price: '', stock: '', category_id: '', featured: 0, image: '' });
+      setImagePreview(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
       loadProducts();
     } catch (err) {
       console.error('Erro ao salvar produto:', err);
@@ -207,14 +231,9 @@ function AdminProducts() {
               <button className="modal-close" onClick={() => {
                 setShowModal(false);
                 setEditingId(null);
-                setFormData({
-                  name: '',
-                  description: '',
-                  price: '',
-                  stock: '',
-                  category_id: '',
-                  featured: 0,
-                });
+                setFormData({ name: '', description: '', price: '', stock: '', category_id: '', featured: 0, image: '' });
+                setImagePreview(null);
+                if (fileInputRef.current) fileInputRef.current.value = '';
               }}>
                 ✕
               </button>
@@ -291,6 +310,37 @@ function AdminProducts() {
                   {' '}Destacado
                 </label>
               </div>
+
+              <div className="form-group">
+                <label>Imagem do Produto</label>
+                {imagePreview && (
+                  <div style={{ marginBottom: '8px' }}>
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      style={{ maxWidth: '100%', maxHeight: '160px', borderRadius: '6px', border: '1px solid #ddd', objectFit: 'cover' }}
+                    />
+                  </div>
+                )}
+                {!editingId && (
+                  <p style={{ fontSize: '12px', color: '#888', marginBottom: '6px' }}>
+                    Salve o produto primeiro para poder adicionar uma imagem.
+                  </p>
+                )}
+                {editingId && (
+                  <>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/gif,image/webp"
+                      onChange={handleImageChange}
+                      disabled={uploading}
+                      style={{ display: 'block', marginBottom: '4px' }}
+                    />
+                    {uploading && <small style={{ color: '#667eea' }}>Enviando imagem...</small>}
+                  </>
+                )}
+              </div>
             </div>
 
             <div className="modal-footer">
@@ -300,14 +350,9 @@ function AdminProducts() {
                 onClick={() => {
                   setShowModal(false);
                   setEditingId(null);
-                  setFormData({
-                    name: '',
-                    description: '',
-                    price: '',
-                    stock: '',
-                    category_id: '',
-                    featured: 0,
-                  });
+                  setFormData({ name: '', description: '', price: '', stock: '', category_id: '', featured: 0, image: '' });
+                  setImagePreview(null);
+                  if (fileInputRef.current) fileInputRef.current.value = '';
                 }}
               >
                 Cancelar

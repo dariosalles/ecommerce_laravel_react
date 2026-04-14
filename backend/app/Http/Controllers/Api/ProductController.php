@@ -66,6 +66,31 @@ class ProductController extends Controller
         return response()->json(['message' => 'Produto excluído com sucesso']);
     }
 
+    public function uploadImage(Request $request, $id)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $file     = $request->file('image');
+        $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '_', $file->getClientOriginalName());
+        $file->move(public_path('images/products'), $filename);
+
+        // Remove imagem anterior se for um arquivo local
+        if ($product->image && !str_starts_with($product->image, 'http')) {
+            $oldPath = public_path('images/products/' . $product->image);
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+        }
+
+        $product->update(['image' => $filename]);
+
+        return response()->json(['image' => $filename]);
+    }
+
     public function search(Request $request)
     {
         $query = $request->input('q');
