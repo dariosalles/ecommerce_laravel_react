@@ -16,6 +16,7 @@ function Header() {
   const [featuredCategories, setFeaturedCategories] = useState([]);
   const [showCategoriesMenu, setShowCategoriesMenu] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchCategories();
@@ -155,15 +156,22 @@ function Header() {
                 </div>
               )}
             </div>
-            <ul className="nav-menu">
-              <li><Link to="/">{t('navigation.home')}</Link></li>
+            <ul className={`nav-menu${menuOpen ? ' nav-menu-open' : ''}`}>
+              <li><Link to="/" onClick={() => setMenuOpen(false)}>{t('navigation.home')}</Link></li>
               {featuredCategories.slice(0, 4).map((category) => (
                 <li key={category.id}>
-                  <Link to={`/categories/${category.id}`}>{category.name.toUpperCase()}</Link>
+                  <Link to={`/categories/${category.id}`} onClick={() => setMenuOpen(false)}>{category.name.toUpperCase()}</Link>
                 </li>
               ))}
-              <li><Link to="/contact">{t('navigation.contact')}</Link></li>
+              <li><Link to="/contact" onClick={() => setMenuOpen(false)}>{t('navigation.contact')}</Link></li>
             </ul>
+            <button
+              className="hamburger-btn"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Abrir menu"
+            >
+              {menuOpen ? '✕' : '☰'}
+            </button>
             <Link to="/cart" className="nav-cart">
               <span>🛒 {t('cart.myCart')}</span>
               <span className="cart-count">{getTotalItems()}</span>

@@ -219,3 +219,150 @@
   margin: 0 auto;
   padding: 0 15px;
 }
+
+/* Botão hambúrguer - escondido no desktop */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #333;
+  padding: 5px 8px;
+  line-height: 1;
+}
+
+/* Busca form */
+.search-form {
+  display: flex;
+  width: 100%;
+}
+
+/* =====================
+   Responsivo - Tablet
+   ===================== */
+@media (max-width: 900px) {
+  .header-actions {
+    gap: 15px;
+  }
+
+  .nav-menu {
+    gap: 15px;
+  }
+}
+
+/* =====================
+   Responsivo - Mobile
+   ===================== */
+@media (max-width: 768px) {
+  .header-top-content {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .header-main {
+    padding: 12px 0;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo {
+    flex: 1;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+
+  .search-bar {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    flex: unset;
+  }
+
+  .header-actions {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  /* Navbar mobile */
+  .nav-content {
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .categories-dropdown {
+    flex-shrink: 0;
+  }
+
+  .hamburger-btn {
+    display: block;
+    margin-left: auto;
+  }
+
+  .nav-cart {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .nav-menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    padding: 5px 0;
+    gap: 0;
+  }
+
+  .nav-menu.nav-menu-open {
+    display: flex;
+  }
+
+  .nav-menu li {
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* =====================
+   Responsivo - Mobile pequeno
+   ===================== */
+@media (max-width: 480px) {
+  .header-top-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .logo h1 {
+    font-size: 18px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .categories-btn {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .nav-cart {
+    padding: 10px 12px;
+    font-size: 11px;
+    gap: 6px;
+  }
+}

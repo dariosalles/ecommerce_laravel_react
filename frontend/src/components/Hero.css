@@ -264,6 +264,13 @@
   }
 }
 
+/* Responsivo - Tablet: desabilita fixed attachment (iOS não suporta) */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
+
 /* Responsivo - Mobile */
 @media (max-width: 480px) {
   .hero {
